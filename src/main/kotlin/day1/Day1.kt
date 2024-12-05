@@ -1,16 +1,16 @@
-package org.example
+package org.example.day1
 
 import java.io.File
 import kotlin.math.abs
 
-const val INPUT_PATH = "src/main/resources/inputs/day1"
+private const val INPUT_PATH = "src/main/resources/inputs/day1"
 
-data class Input(
+private data class Input(
     val left: List<Int>,
     val right: List<Int>,
 )
 
-fun loadInput(): Input  {
+private fun loadInput(): Input {
     val file = File(INPUT_PATH)
     val left = mutableListOf<Int>()
     val right = mutableListOf<Int>()
@@ -24,7 +24,7 @@ fun loadInput(): Input  {
     return Input(left, right)
 }
 
-fun computeDistance(input: Input): Int {
+private fun computeDistance(input: Input): Int {
     val sortedInput = Input(input.left.sorted(), input.right.sorted())
     val zippedInput: List<Pair<Int, Int>> = sortedInput.left.zip(sortedInput.right)
     return zippedInput.fold(0) { a: Int, pair: Pair<Int, Int> ->
@@ -32,7 +32,7 @@ fun computeDistance(input: Input): Int {
     }
 }
 
-fun computeSimilarityScore(input: Input): Int {
+private fun computeSimilarityScore(input: Input): Int {
     val rightListNumberToFrequency: Map<Int, Int> = buildMap {
         input.right.forEach { num ->
             putIfAbsent(num, 0)
